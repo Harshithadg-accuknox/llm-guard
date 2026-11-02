@@ -297,6 +297,41 @@ Create a summarized version of his resume.""",
             0.2,
         ),  # Indian passport number written with a dash
         (
+            {"entity_types": ["IN_PAN"]},
+            "My PAN is ABCPE1234F.",
+            "My PAN is [REDACTED_IN_PAN_1].",
+            False,
+            1.0,
+        ),  # PAN without separators
+        (
+            {"entity_types": ["IN_PAN"]},
+            "My PAN is ABCPE 1234 F.",
+            "My PAN is [REDACTED_IN_PAN_1].",
+            False,
+            1.0,
+        ),  # PAN written with spaces
+        (
+            {"entity_types": ["IN_PAN"]},
+            "My PAN is ABCPE-1234-F.",
+            "My PAN is [REDACTED_IN_PAN_1].",
+            False,
+            1.0,
+        ),  # PAN written with dashes
+        (
+            {"entity_types": ["IN_PAN"]},
+            "My PAN is ABCPE 1234F.",
+            "My PAN is [REDACTED_IN_PAN_1].",
+            False,
+            1.0,
+        ),  # PAN with a space only after the letters
+        (
+            {"entity_types": ["IN_PAN"]},
+            "Hello world 2024 a great year.",
+            "Hello world 2024 a great year.",
+            True,
+            -1.0,
+        ),  # Lowercase words and a year are not a separated PAN
+        (
             {"entity_types": ["AE_EMIRATES_ID"]},
             "My Emirates ID is 784-1990-1234567-6.",
             "My Emirates ID is [REDACTED_AE_EMIRATES_ID_1].",

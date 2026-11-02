@@ -35,6 +35,7 @@ def _get_predefined_recognizers(language: str) -> list[Callable[..., EntityRecog
         InUpiRecognizer,
         InTanRecognizer,
         AeEmiratesIdRecognizer,
+        NrpRecognizer,
     ]
 
 
